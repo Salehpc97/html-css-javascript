@@ -1073,3 +1073,5 @@ document.addEventListener('DOMContentLoaded', function() {
 3.  **My Learning Journal:**
     *   Open `public/index.html` in your web browser.
     *   You can now type notes into the input field and click "Add Note" to see them appear in the list. Notes will persist across sessions. A random quote will also be displayed.
+
+# html-css-javascript
