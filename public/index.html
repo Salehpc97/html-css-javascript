@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning Journal</title>
+    <!-- Link to our CSS file for styling -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-header">
+            <a href="Library.html" class="Library-page">Library</a>
+            <h1>My Learning Journal</h1>
+        </div>
+        <form id="note-form">
+            <input type="text" id="note-input" placeholder="What did you learn today?" required>
+            <button type="submit">Add Note</button>
+        </form>
+
+        <ul id="notes-list">
+            <!-- Notes will be added here by JavaScript -->
+        </ul>
+
+        <div class="quote-section">
+            <h2>Daily Inspiration</h2>
+            <p id="quote-display">Loading a wise quote...</p>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

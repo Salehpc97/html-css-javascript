@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "description": "A novel about the American dream.",
+        "cover": "assets/images/gatsby.jpg",
+        "filePath": "/books/gatsby.pdf",
+        "category": "literature"
+    },
+    {
+        "id": 2,
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "description": "A novel about childhood, justice, and race.",
+        "cover": "assets/images/mockingbird.jpg",
+        "filePath": "/books/mockingbird.pdf",
+        "category": "literature"
+    },
+    {
+        "id": 3,
+        "title": "1984",
+        "author": "George Orwell",
+        "description": "A dystopian novel about totalitarianism.",
+        "cover": "assets/images/1984.jpg",
+        "filePath": "/books/1984.pdf",
+        "category": "science"
+    },
+    {
+        "id": 4,
+        "title": "Eloquent JavaScript",
+        "author": "Marijn Haverbeke",
+        "description": "A modern introduction to programming.",
+        "cover": "assets/images/eloquent-js.jpg",
+        "filePath": "/books/eloquent-js.pdf",
+        "category": "programming"
+    }
+]

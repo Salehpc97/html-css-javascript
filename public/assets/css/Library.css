@@ -1,0 +1,366 @@
+/* General Styles */
+:root {
+    --primary-color: #337ab7;
+    --secondary-color: #5cb85c;
+    --light-gray: #f4f4f4;
+    --dark-gray: #333;
+    --text-color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    direction: ltr; /* Default to LTR */
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-gray);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: block; /* Always visible */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.search-container {
+    display: flex;
+}
+
+#search-input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+#search-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: #286090;
+}
+
+/* Main Layout */
+.library-container {
+    display: flex;
+    flex-grow: 1; /* This will make it take up remaining vertical space */
+    transition: transform 0.3s ease-in-out; /* Added transition */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-right: 1px solid #dee2e6;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar nav li a:hover,
+.sidebar nav li a.active {
+    background-color: #e9ecef;
+    color: #000;
+}
+
+.category-header {
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+main {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 2rem;
+}
+
+/* Book Grid Styles */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.book-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.book-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.book-cover {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.book-info {
+    padding: 1rem;
+}
+
+.book-title {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.book-author {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.book-description {
+    font-size: 0.9rem;
+    color: #777;
+    height: 60px; /* Fixed height for alignment */
+    overflow: hidden;
+}
+
+.book-actions button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0.5rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.book-actions button:hover {
+    transform: scale(1.05);
+}
+
+.read-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.download-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 70%; 
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-gray);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* RTL Support */
+[dir="rtl"] body {
+    direction: rtl;
+}
+
+[dir="rtl"] .logo img {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+[dir="rtl"] #search-input {
+    border-radius: 0 5px 5px 0;
+}
+
+[dir="rtl"] #search-button {
+    border-radius: 5px 0 0 5px;
+}
+
+[dir="rtl"] .close-btn {
+    float: left;
+}
+
+/* Feedback Messages */
+.loading-indicator,
+.error-message,
+.info-message {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.error-message {
+    color: #d9534f;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below sidebar, above main content */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -250px; /* Hidden off-screen */
+        top: 0;
+        height: 100%;
+        z-index: 1000;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .menu-toggle {
+        display: block; /* Show the hamburger menu */
+    }
+
+    .library-container {
+        flex-direction: column;
+        transition: transform 0.3s ease-in-out; /* Add transition for smooth shift */
+    }
+
+    .library-container.shifted {
+        transform: translateX(250px); /* Shift content to the right */
+    }
+
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        transition: transform 0.3s ease-in-out; /* Add transition for smooth shift */
+    }
+
+    header.shifted {
+        transform: translateX(250px); /* Shift header to the right */
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    .search-container {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    #search-input {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
+}

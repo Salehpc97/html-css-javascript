@@ -1,0 +1,17 @@
+{
+  "name": "html-css-javascript",
+  "version": "1.0.0",
+  "description": "This project is a simple web application designed to help you keep track of what you're learning. It's built as a step-by-step guide to demonstrate fundamental web development concepts using HTML, CSS, and JavaScript.",
+  "main": "server.js",
+"scripts": {
+  "start": "nodemon backend/server.js"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

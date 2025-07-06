@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="assets/css/Library.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Logo">
+                <h1>Library</h1>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for books...">
+            <button id="search-button">Search</button>
+        </div>
+    </header>
+    <div class="library-container">
+        <aside id="sidebar" class="sidebar" aria-label="Library Navigation">
+            <nav id="sidebar-nav">
+                <!-- Sidebar links will be dynamically injected here -->
+            </nav>
+        </aside>
+        <main>
+            <section id="books">
+                <h2>Books</h2>
+                <div id="book-grid" class="book-grid">
+                    <!-- Book items will be dynamically injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for reading the book -->
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modal-book-content">
+                <!-- Book content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <footer>
+        <p>&copy; 2025 Your Company</p>
+    </footer>
+
+    <script src="assets/js/LibraryLogic.js"></script>
+</body>
+</html>
