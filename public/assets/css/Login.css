@@ -1,6 +1,7 @@
 body {
-    background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:  #f4f4f4;
+    padding: 40px;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,6 +13,7 @@ body {
 }
 
 .container {
+    flex-direction: column;
     background-color: #ffffff;
     padding: 40px;
     border-radius: 10px;
@@ -20,20 +22,28 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-
 .logo {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
+    display: flex;
+justify-content: space-between;
+}
+.logo h1 {
+    font-size: 26px;
     color: #007bff;
-    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 5px;
+    
+}
+.logo img {
+    display: inline-block;
+    height: 85px;
+    padding: 0px 20px;
+    margin: 0;
+    transition: transform 0.3s ease;
+    padding-right: 15px;
 }
 
-.main-title {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .form-group {

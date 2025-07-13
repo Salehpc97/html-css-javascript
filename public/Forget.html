@@ -8,13 +8,17 @@
 </head>
 <body>
     <main class="container">
-        <div class="logo">شعار</div>
         
-        <h1 class="main-title">نسيت كلمة المرور؟</h1>
-        
-        <p class="instruction-text">الرجاء إدخال بريدك الإلكتروني لإعادة تعيين كلمة المرور.</p>
+        <div class="logo">
+            <h1 class="main-title">نسيت كلمة المرور؟</h1>
+            <img src="assets/images/logo.png" alt="Noor Book Logo">
+        </div>
 
-        <form class="forget-password-form">
+        <div class="instruction-text">
+            <p>الرجاء إدخال بريدك الإلكتروني لإعادة تعيين كلمة المرور.</p>
+        </div>
+    <div class="forget-password-form">
+        <form>
             <div class="form-group">
                 <label for="email">البريد الإلكتروني</label>
                 <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
@@ -22,10 +26,12 @@
             
             <button type="submit" class="submit-btn">إرسال</button>
         </form>
+    </div>
         
         <div class="back-to-login">
             <p><a href="Login.html">العودة إلى صفحة تسجيل الدخول</a></p>
         </div>
+        
     </main>
 </body>
 </html>

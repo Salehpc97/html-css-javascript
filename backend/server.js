@@ -20,7 +20,12 @@ app.get('/api/books', (req, res) => {
             console.error('Error reading metadata:', err);
             return res.status(500).send('Error reading book metadata.');
         }
-        res.json(JSON.parse(data));
+        try {
+            res.json(JSON.parse(data));
+        } catch (parseErr) {
+            console.error('Error parsing metadata:', parseErr);
+            return res.status(500).send('Error parsing book metadata.');
+        }
     });
 });
 

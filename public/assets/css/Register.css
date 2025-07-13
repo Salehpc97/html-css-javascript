@@ -1,6 +1,7 @@
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
     margin: 0;
     padding: 0;
     display: flex;
@@ -22,22 +23,34 @@ body {
 }
 
 .logo {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.main-title {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
+.logo h1 {
+    font-size: 26px;
+    color: #007bff;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.logo img {
+    display: inline-block;
+    height: 85px;
+    padding: 0px 20px;
+    margin: 0;
+    transition: transform 0.3s ease;
+    padding-right: 15px;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .form-group label {
@@ -47,9 +60,7 @@ body {
     color: #555;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
+.form-group input{
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
@@ -58,9 +69,8 @@ body {
     box-sizing: border-box;
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group input[type="password"]:focus {
+.form-group input:focus
+{
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -69,7 +79,7 @@ body {
 .register-btn {
     width: 100%;
     padding: 15px;
-    background-color: #28a745; /* Green for registration */
+    background-color: #007bff; /* Green for registration */
     color: white;
     border: none;
     border-radius: 6px;
@@ -79,7 +89,7 @@ body {
 }
 
 .register-btn:hover {
-    background-color: #218838;
+    background-color:#0056b3;
 }
 
 .back-to-login {

@@ -3,54 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>Digital Library</title>
     <link rel="stylesheet" href="assets/css/Library.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Logo">
-                <h1>Library</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__left">
+                    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                    <nav class="nav">
+                        <a href="#" class="nav__link">Home</a>
+                        <a href="#" class="nav__link">Browse</a>
+                        <a href="#" class="nav__link">Collections</a>
+                        <a href="#" class="nav__link">About</a>
+                    </nav>
+                </div>
+                
+                <div class="header__center">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search books, authors, genres..." id="searchInput">
+                        <button class="search-button" aria-label="Search">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="header__right">
+                    <h1 class="logo">Digital Library</h1>
+                    <div class="auth-buttons">
+                        <button class="btn btn--outline btn--sm">Sign In</button>
+                        <button class="btn btn--primary btn--sm">Register</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search for books...">
-            <button id="search-button">Search</button>
         </div>
     </header>
-    <div class="library-container">
-        <aside id="sidebar" class="sidebar" aria-label="Library Navigation">
-            <nav id="sidebar-nav">
-                <!-- Sidebar links will be dynamically injected here -->
-            </nav>
-        </aside>
-        <main>
-            <section id="books">
-                <h2>Books</h2>
-                <div id="book-grid" class="book-grid">
-                    <!-- Book items will be dynamically injected here -->
-                </div>
-            </section>
-        </main>
-    </div>
 
-    <!-- Modal for reading the book -->
-    <div id="book-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div id="modal-book-content">
-                <!-- Book content will be loaded here -->
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar__header">
+            <h3>Categories</h3>
+        </div>
+        <div class="sidebar__content">
+            <ul class="category-list" id="categoryList">
+                <li class="category-item active" data-category="all">
+                    <button class="category-button">All Books <span class="category-count">15</span></button>
+                </li>
+                <li class="category-item" data-category="fiction">
+                    <button class="category-button">Fiction <span class="category-count">7</span></button>
+                </li>
+                <li class="category-item" data-category="science">
+                    <button class="category-button">Science <span class="category-count">2</span></button>
+                </li>
+                <li class="category-item" data-category="history">
+                    <button class="category-button">History <span class="category-count">1</span></button>
+                </li>
+                <li class="category-item" data-category="biography">
+                    <button class="category-button">Biography <span class="category-count">3</span></button>
+                </li>
+                <li class="category-item" data-category="children">
+                    <button class="category-button">Children <span class="category-count">2</span></button>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div class="container">
+            <div class="content-header">
+                <h2 class="content-title">Browse Books</h2>
+                <p class="content-subtitle">Discover your next favorite book</p>
+            </div>
+            
+            <div class="books-grid" id="booksGrid">
+                <!-- Books will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Book Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="bookModal">
+            <div class="modal__header">
+                <h3 class="modal__title" id="modalTitle">Book Title</h3>
+                <button class="modal__close" id="modalClose" aria-label="Close modal">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal__content">
+                <div class="modal__book-info">
+                    <img class="modal__book-cover" id="modalCover" alt="Book cover">
+                    <div class="modal__book-details">
+                        <p class="modal__author" id="modalAuthor">Author</p>
+                        <p class="modal__category" id="modalCategory">Category</p>
+                        <div class="modal__rating" id="modalRating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-value">4.5</span>
+                        </div>
+                        <p class="modal__pages" id="modalPages">Pages: 200</p>
+                    </div>
+                </div>
+                <div class="modal__description" id="modalDescription">
+                    Book description will appear here...
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--primary">Read Now</button>
+                    <button class="btn btn--outline">Add to Library</button>
+                    <button class="btn btn--secondary">Download</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
-
-    <footer>
-        <p>&copy; 2025 Your Company</p>
-    </footer>
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script src="assets/js/LibraryLogic.js"></script>
 </body>
