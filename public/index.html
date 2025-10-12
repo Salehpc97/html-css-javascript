@@ -1,33 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Learning Journal</title>
-    <!-- Link to our CSS file for styling -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <main class="container">
-        <div class="main-header">
-            <a href="Library.html" class="Library-page">Library</a>
-            <h1>My Learning Journal</h1>
-        </div>
-        <form id="note-form">
-            <input type="text" id="note-input" placeholder="What did you learn today?" required>
-            <button type="submit">Add Note</button>
-        </form>
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Digital Library</title>
+   <link rel="stylesheet" href="assets/css/index.css">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ </head>
+ <body>
+   <!-- Header -->
+   <header class="header">
+     <div class="header__inner">
+       <div class="header__start">
+         <button class="header-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+           <span class="header-toggle__line"></span>
+           <span class="header-toggle__line"></span>
+           <span class="header-toggle__line"></span>
+         </button>
+         <nav class="nav">
+           <a href="#home" class="nav__link">Home</a>
+           <a href="#browse" class="nav__link">Browse</a>
+           <a href="#collections" class="nav__link">Collections</a>
+           <a href="#about" class="nav__link">About</a>
+         </nav>
+       </div>
+       
+       <div class="header__center">
+         <div class="search">
+            <input type="text" class="search__input" placeholder="Search books, authors, genres..." id="searchInput">
+            <button class="search__button" aria-label="Search">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </button>
+         </div>
+       </div>
+     
+       <div class="header__end">
+         <h1 class="logo">Digital Library</h1>
+         <div class="buttons"id="buttons">
+          <button class="btn button__item button__item--primary signInBtn" id="signInBtn">Sign In</button>
+          <button class="btn button__item button__item--secondary registerBtn" id="registerBtn">Register</button>
+         </div>
+       </div>
+     </div>
+   </header>
 
-        <ul id="notes-list">
-            <!-- Notes will be added here by JavaScript -->
-        </ul>
-
-        <div class="quote-section">
-            <h2>Daily Inspiration</h2>
-            <p id="quote-display">Loading a wise quote...</p>
+    <!-- Sidebar -->
+   <aside class="sidebar" id="sidebar">
+     <div class="sidebar__header" id="sidebarHeader">
+       <h3>Categories</h3>
+     </div>
+     <div class="sidebar__content">
+       <ul class="category-list" id="categoryList">
+         <li class="category-item active" data-category="all">
+             <button class="category-button">All Books<span class="category-count">20</span> </button>
+         </li>
+         <li class="category-item" data-category="fiction">
+             <button class="category-button">Fiction<span class="category-count">5</span> </button>
+         </li>
+         <li class="category-item" data-category="science">
+             <button class="category-button">Science<span class="category-count">8</span> </button>
+         </li>
+         <li class="category-item" data-category="history">
+             <button class="category-button">History<span class="category-count">7</span> </button>
+         </li>
+         <li class="category-item" data-category="biography">
+             <button class="category-button">Biography<span class="category-count">4</span> </button>
+         </li>
+         <li class="category-item" data-category="children">
+             <button class="category-button">Children<span class="category-count">6</span> </button>
+         </li>
+       </ul>
+       <ul class="setting-list" id="setting-list">
+         <li>
+           <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+             <span id="themeIcon" aria-hidden="true">
+               <!-- Default: Sun icon -->
+               <svg id="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+             </span>
+             <span id="themeText">Light Mode</span>
+           </button>
+         </li>
+         <li>
+           <button class="sidebar__setting-toggle" id="settingsToggle" aria-label="Library settings">
+             <span aria-hidden="true">
+               <!-- Settings icon -->
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+             </span>
+           </button>
+         </li>
+         <li>
+           <button class="sidebar__language-toggle" id="languageToggle" aria-label="تغيير اللغة">
+             <span aria-hidden="true">
+               <!-- Globe icon -->
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+             </span>
+           </button>
+         </li>
+       </ul>
+     </div>
+   </aside>
+   <!-- Main Content -->
+   <main class="main" id="main">
+      <!-- Section Block with `home` modifier -->
+      <section  class="section section--home" id="section--home">
+        <div class="books-grid " id="booksGrid">
+          <div class="loading books-grid--loading" id="loadingState" >
+            <div class="books-grid__spinner"></div>
+            <h3 class="books-grid__title">Loading Books...</h3>
+            <p class="books-grid__note">Fetching the latest collection from our library...</p>
+          </div>
         </div>
+      </section>
+      <!-- Browse Section -->
+      <section class="section section--browse" id="sectiong--browse">
+        <div class="section__container">
+          <h2 class="section__title">Browse</h2>
+          <p class="section__text">Explore our book categories and find your next read.</p>
+        </div>
+      </section>
+      <!-- Collections Section -->
+      <section class="section section--collections" id="section--collections">
+        <div class="section__container">
+          <h2 class="section__title">Collections</h2>
+          <p class="section__text">Discover curated collections and featured books.</p>
+        </div>
+      </section>
+      <!-- About Section -->
+      <section class="section section--about" id="section--about">
+        <div class="section__container">
+          <h2 class="section__title">About</h2>
+          <p class="section__text">Learn more about our digital library and mission.</p>
+        </div>
+      </section>
     </main>
-
-    <script src="assets/js/script.js"></script>
+    <!-- Book Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal" id="bookModal">
+        <div class="modal__header">
+          <h3 class="modal__title" id="modalTitle">Book Title</h3>
+          <button class="modal__close" id="modalClose" aria-label="Close modal">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__content">
+          <div class="modal__book-info">
+            <img class="modal__book-cover" id="modalCover" alt="Book cover">
+            <div class="modal__book-details">
+              <p class="modal__author" id="modalAuthor">Author</p>
+              <p class="modal__category" id="modalCategory">Category</p>
+              <div class="modal__rating" id="modalRating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-value">4.5</span>
+              </div>
+              <p class="modal__pages" id="modalPages">Pages: 200</p>
+            </div>
+          </div>
+          <div class="modal__description" id="modalDescription">
+            Book description will appear here...
+          </div>
+          <div class="modal__actions">
+            // Action buttons will be dynamically added here
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>

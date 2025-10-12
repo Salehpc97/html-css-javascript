@@ -337,14 +337,14 @@ const API_CONFIG = {
     if (signInBtn) {
       signInBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        showToast('Sign In feature coming soon!', 'info');
+       window.location.href = 'login.html';
       });
     }
     
     if (registerBtn) {
       registerBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        showToast('Registration feature coming soon!', 'info');
+        window.location.href = 'register.html';
       });
     }
   }
