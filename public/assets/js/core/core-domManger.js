@@ -22,7 +22,7 @@ export class DOMManager {
     this.options = {
       enableCaching: options.enableCaching ?? true,
       enableObserver: options.enableObserver ?? true,
-      debugMode: options.debugMode ?? (process.env.NODE_ENV !== 'production'),
+      debugMode: options.debugMode ?? true, // or false, depending on your default
       autoRetry: options.autoRetry ?? true,
       retryInterval: options.retryInterval || 1000,
       maxRetries: options.maxRetries || 3,
@@ -646,7 +646,9 @@ export class DOMManager {
 export const domManager = new DOMManager();
 
 // ربط مع النافذة للتصحيح (في بيئة التطوير فقط)
-if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+const isDev = true; // manually toggle this
+
+if (typeof window !== 'undefined' && isDev) {
   window.domManager = domManager;
   console.log('🔧 [DOMManager] متاح عبر window.domManager');
 }

@@ -52,7 +52,8 @@ export class ServiceManager {
 
     try {
       // اختبار خدمة API
-      const apiStatus = ApiService.getApiStatus();
+      const api =new ApiService();
+      const apiStatus = api.testConnection();
       console.log('📡 [ServiceManager] حالة API:', apiStatus);
 
       // اختبار خدمة الكتب

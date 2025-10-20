@@ -7,9 +7,14 @@
 
 // استيراد النواة الأساسية
 import { initializeCore, eventBus, domManager, StateManager } from './core/core-index.js';
-
+import { DOM_ELEMENTS } from './core/core-config.js';
 // استيراد الخدمات
-import { ApiService } from './services/services-apiService.js';
+import { ApiService } from './services/services-index.js';
+
+
+import { UIManager } from './managers/ui-manager.js';
+import { SearchManager } from './managers/search-manager.js';
+
 
 // استيراد المدراء (سننشئها لاحقاً)
 // import { AppManager } from './managers/appManager.js';
@@ -20,8 +25,17 @@ import { ApiService } from './services/services-apiService.js';
  */
 class DigitalLibraryApp {
   constructor() {
+    this.states = new StateManager();
+    this.api = new ApiService();
+    this.uiManager = new UIManager();
+    this.searchManager = new SearchManager();
+    
     this.isStarted = false;
     this.modules = new Map();
+
+      // إعداد مستمعي الأحداث
+    this.setupEventListeners();
+
     this.initializationSteps = [
       'core',
       'services', 
@@ -31,6 +45,41 @@ class DigitalLibraryApp {
     ];
   }
 
+  setupEventListeners() {
+    eventBus.subscribe('books:loaded', (data) => {
+      console.log(`📚 [DigitalLibrary] تم تحميل ${data.books.length} كتاب`);
+      this.hideLoadingScreen();
+      this.renderBooks(data.books);
+    });
+    eventBus.subscribe('books:load_failed', (data) => {
+      console.error('❌ [DigitalLibrary] فشل في تحميل الكتب:', data.error);
+      this.showErrorMessage(data.error);
+    });
+        // أحداث البحث
+    eventBus.subscribe('search:results:ready', (data) => {
+      console.log(`🔍 [DigitalLibrary] نتائج البحث: ${data.count} كتاب`);
+      this.renderBooks(data.results);
+    });
+
+    // أحداث التفاعل
+    eventBus.subscribe('ui:book:select', (data) => {
+      // تم نقل منطق فتح الكتب إلى UIManager
+      console.log('📖 [DigitalLibrary] تفويض فتح الكتاب لـ UIManager');
+    });
+
+    // أحداث النظام
+    eventBus.subscribe('app:started', (data) => {
+      console.log('🎉 [DigitalLibrary] التطبيق جاهز:', data.timestamp);
+    });
+
+    eventBus.subscribe('ui:initialized', () => {
+      console.log('🎮 [DigitalLibrary] واجهة المستخدم جاهزة');
+    });
+
+    eventBus.subscribe('search:initialized', () => {
+      console.log('🔍 [DigitalLibrary] مدير البحث جاهز');
+    });
+  }
   /**
    * بدء التطبيق
    */
@@ -63,12 +112,6 @@ class DigitalLibraryApp {
       
       this.isStarted = true;
       console.log('✅ [DigitalLibrary] تم تشغيل التطبيق بنجاح');
-      
-      // إشعار بنجاح التشغيل
-      eventBus.publish('app:started', {
-        timestamp: new Date(),
-        version: '1.0.0'
-      });
       
     } catch (error) {
       console.error('❌ [DigitalLibrary] فشل في تشغيل التطبيق:', error);
@@ -103,7 +146,7 @@ class DigitalLibraryApp {
       eventBus.subscribe('app:fetch_books_requested', this.handleFetchBooksRequest.bind(this));
       
       // اختبار الاتصال بالخادم
-      const connectionTest = await ApiService.testConnection();
+      const connectionTest = await this.api.testConnection();
       if (!connectionTest.success) {
         console.warn('⚠️ [DigitalLibrary] مشكلة في الاتصال بالخادم:', connectionTest.error);
       }
@@ -121,10 +164,12 @@ class DigitalLibraryApp {
     console.log('🔧 [DigitalLibrary] تهيئة المدراء...');
     
     try {
-      // سيتم إضافة المدراء هنا لاحقاً
-      // const appManager = new AppManager(eventBus, domManager);
-      // this.modules.set('appManager', appManager);
-      
+     await this.uiManager.initialize();
+     this.modules.set('uiManager', this.uiManager);
+
+     await this.searchManager.initialize();
+     this.modules.set('searchManager', this.searchManager);
+
       console.log('✅ [DigitalLibrary] تمت تهيئة المدراء بنجاح');
     } catch (error) {
       throw new Error(`فشل في تهيئة المدراء: ${error.message}`);
@@ -167,25 +212,133 @@ class DigitalLibraryApp {
   async handleFetchBooksRequest() {
     try {
       console.log('📚 [DigitalLibrary] بدء جلب الكتب...');
-      StateManager.setLoading(true);
+      this.states.setLoading(true);
+
+      const books = await this.api.getBooks();
+      if (!books || !Array.isArray(books)) {
+        throw new Error ('البيانات غير صالحة');
+      }
+
+      this.states.setBooksData(books);
+      this.states.setLoading(false);
       
-      const books = await ApiService.fetchBooks();
-      StateManager.setBooksData(books);
-      StateManager.setLoading(false);
-      
+
       eventBus.publish('books:loaded', { books });
       console.log(`✅ [DigitalLibrary] تم جلب ${books.length} كتاب`);
       
     } catch (error) {
       console.error('❌ [DigitalLibrary] فشل في جلب الكتب:', error);
-      StateManager.setLoading(false);
-      StateManager.setError(true);
-      
+      this.states.setLoading(false);
+      this.states.setError(true);
+      this.states.getErrorMessage(error.message);
       eventBus.publish('books:load_failed', { error: error.message });
       this.showErrorMessage(error.message);
     }
   }
 
+  // دوال العرض والتفاعل مع DOM
+  hideLoadingScreen() {
+    const loadingScreen = DOM_ELEMENTS.loadingScreen;
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+      console.log('✅ [Debug] تم إخفاء شاشة التحميل');
+    } else {
+      console.warn('⚠️ [Debug] لم يتم العثور على عنصر التحميل');
+    }
+  }
+
+  renderBooks(books) {
+    const booksGrid = DOM_ELEMENTS.booksGrid;
+    if (!booksGrid) {
+      console.error('❌ لم يتم العثور على عنصر booksGrid');
+      return;
+    }
+    
+    // مسح المحتوى الحالي
+    booksGrid.innerHTML = '';
+    
+    if (!books || books.length === 0) {
+      this.showEmptyState();
+      return;
+    }
+  
+    const booksContainer = document.createElement('div');
+    booksContainer.className = 'books-container';
+    
+    // إنشاء كروت الكتب
+    books.forEach(book => {
+      const bookCard = this.createBookCard(book);
+      booksContainer.appendChild(bookCard);
+    });
+
+    booksGrid.appendChild(booksContainer);
+    console.log('✅ [Debug] تم عرض الكتب في الشبكة');
+  }
+
+  createBookCard(book) {
+    const card = document.createElement('div');
+    card.className = 'book-card';
+    card.innerHTML = `
+      <div class="book-card__cover">
+        <img src="${book.cover || '/assets/images/default-book-cover.jpg'}" 
+             alt="${book.title}" 
+             onerror="this.src='/assets/images/default-book-cover.jpg'">
+      </div>
+      <div class="book-card__info">
+        <h3 class="book-card__title">${book.title || 'عنوان غير متوفر'}</h3>
+        <p class="book-card__author">${book.author || 'مؤلف غير معروف'}</p>
+        <span class="book-card__category">${book.category || 'غير مصنف'}</span>
+      </div>
+    `;
+    
+    // إضافة مستمع النقر
+    card.addEventListener('click', () => {
+      eventBus.publish('ui:book:select', { book });
+    });
+    
+    return card;
+  }
+
+  showEmptyState() {
+   const booksGrid = DOM_ELEMENTS.booksGrid;
+    if ((booksGrid)) {
+      booksGrid.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state__icon">📚</div>
+          <h3 class="empty-state__title">لا توجد كتب متاحة</h3>
+          <p class="empty-state__message">لم يتم العثور على أي كتب في المكتبة.</p>
+          <button onclick="location.reload()" class="retry-btn">
+            إعادة تحديث
+          </button>
+        </div>
+      `;
+    }
+  }
+
+  showErrorMessage(message) {
+   const booksGrid = DOM_ELEMENTS.booksGrid;
+    if (booksGrid) {
+      booksGrid.innerHTML = `
+        <div class="error-state">
+          <div class="error-state__icon">⚠️</div>
+          <h3 class="error-state__title">حدث خطأ في التحميل</h3>
+          <p class="error-state__message">${message}</p>
+          <button onclick="location.reload()" class="retry-btn">
+            إعادة المحاولة
+          </button>
+        </div>
+      `;
+    }
+  }
+
+  openBookModal(book) {
+    // تنفيذ فتح النافذة المنبثقة للكتاب
+    console.log('📖 فتح كتاب:', book.title);
+    this.states.setSelectedBook(book);
+    this.states.setModalOpen(true);
+    // إضافة منطق النافذة المنبثقة هنا
+  }
+  
   /**
    * إعداد معالجات الأخطاء العامة
    */

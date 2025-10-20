@@ -213,9 +213,13 @@ export const DOM_CONFIG = {
     categoryList: '#categoryList',
     toastContainer: '#toastContainer',
     themeToggle: '#themeToggle',
+    settingsToggle: '#settingsToggle',
+    languageToggle: '#languageToggle',
+    signInBtn: '#signInBtn',
+    searchButton: '#searchButton',
     themeIcon: '#themeIcon',
     themeText: '#themeText',
-    loadingScreen: '#loadingScreen',
+    loadingScreen: '#loadingState',
     
     // عناصر المودال
     modalTitle: '#modalTitle',
@@ -226,9 +230,6 @@ export const DOM_CONFIG = {
     modalPages: '#modalPages',
     modalDescription: '#modalDescription',
     modalClose: '#modalClose',
-    
-    // إحصائيات الصفحة الرئيسية
-    totalBooksCount: '#totalBooksCount'
   },
 
   // أسماء الفئات CSS
@@ -291,6 +292,22 @@ export const DOM_CONFIG = {
     threshold: 0.1
   }
 };
+
+  export const DOM_ELEMENTS = new Proxy(DOM_CONFIG.selectors, {
+  get(target, prop) {
+    const selector = target[prop];
+    if (typeof selector === 'string') {
+      return document.querySelector(selector);
+    }
+    return undefined;
+  }
+});
+
+export function getElement(name) {
+  const selector = DOM_CONFIG.selectors[name];
+  if (!selector) return null;
+  return document.querySelector(selector);
+}
 
 // إعدادات الأداء
 export const PERFORMANCE_CONFIG = {

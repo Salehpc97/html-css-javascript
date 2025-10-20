@@ -41,6 +41,7 @@ export class StateManager {
     this.listeners = new Map();
     this.history = [];
     this.maxHistorySize = 50;
+    this.loading = false;
   }
 
   /**
@@ -492,7 +493,9 @@ export class StateManager {
 export const stateManager = new StateManager();
 
 // ربط مع النافذة للتصحيح (في بيئة التطوير فقط)
-if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+const isDev = true; // manually toggle this
+
+if (typeof window !== 'undefined' && isDev) {
   window.stateManager = stateManager;
   console.log('🔧 [StateManager] متاح عبر window.stateManager');
 }

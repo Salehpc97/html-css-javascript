@@ -5,9 +5,9 @@
 
 // استيراد مكونات النواة الأساسية
 import { CONFIG, API_CONFIG, UI_CONFIG, THEME_CONFIG, BOOK_CONFIG, DOM_CONFIG } from './core-config.js';
+import { DOMManager, domManager } from './core-domManger.js';
 import { EventBus, eventBus } from './core-eventBus.js';
 import { StateManager, stateManager } from './core-state.js';
-import { DOMManager, domManager } from './core-domManager.js';
 
 /**
  * مدير النواة الأساسية الموحد
@@ -465,11 +465,8 @@ export {
   eventBus,
   StateManager,
   stateManager,
-  DOMManager,
   domManager,
-  
-  // النظام الموحد
-  CoreSystem
+  DOMManager,
 };
 
 // تصدير CoreSystem كافتراضي

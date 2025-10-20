@@ -16,7 +16,7 @@ export class EventBus {
     // الإعدادات
     this.options = {
       maxListeners: options.maxListeners || UI_CONFIG.maxListeners || 20,
-      debugMode: options.debugMode ?? (process.env.NODE_ENV !== 'production'),
+      debugMode: options.debugMode ?? true,
       enableMetrics: options.enableMetrics ?? true,
       warningThreshold: options.warningThreshold || 10
     };
@@ -537,7 +537,7 @@ export class EventBus {
 export const eventBus = new EventBus();
 
 // ربط مع النافذة للتصحيح (في بيئة التطوير فقط)
-if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+if (typeof window !== 'undefined' && true) {
   window.eventBus = eventBus;
   console.log('🔧 [EventBus] متاح عبر window.eventBus');
 }
