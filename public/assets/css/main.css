@@ -1,4 +1,17 @@
 
+@import url('./base/typography.css');
+@import url('./components/navigation.css');
+@import url('./layout/footer.css');
+@import url('./pages/auth.css');
+@import url('./pages/library.css');
+@import url('./responsive/mobile.css');
+@import url('./responsive/tablet.css');
+@import url('./responsive/desktop.css');
+@import url('./themes/light.css');
+@import url('./themes/dark.css');
+@import url('./themes/theme-switcher.css');
+@import url('./layout/main.css'); /* بعد نقل layout-main.css إلى layout/main.css */
+/* Main CSS Variables and Base Styles */
 :root {
   /* Colors */
   --color-background: rgba(252, 252, 249, 1);
@@ -359,12 +372,6 @@ pre code {
 
 .button__item--primary {
   background: var(---color-secondary-hover);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-}
-
-.button__item--outline {
-  background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-text);
 }

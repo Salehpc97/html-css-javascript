@@ -1,0 +1,9 @@
+/**
+ * Tablet enhancements
+ */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header__inner { gap: var(--space-16); }
+  .books-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__inner { grid-template-columns: repeat(2, 1fr); }
+}

@@ -739,886 +739,566 @@ select.form-control {
 
 /* END PERPLEXITY DESIGN SYSTEM */
 /**
- * Utilities - الفئات المساعدة
- * فئات مساعدة للتخطيط والتصميم السريع
+ * Toast Notifications - إشعارات التوست
+ * أنماط الإشعارات والرسائل المؤقتة
  */
 
-/* ========== Flexbox Utilities ========== */
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.flex-row {
-  flex-direction: row;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-nowrap {
-  flex-wrap: nowrap;
-}
-
-.items-start {
-  align-items: flex-start;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.items-end {
-  align-items: flex-end;
-}
-
-.items-stretch {
-  align-items: stretch;
-}
-
-.justify-start {
-  justify-content: flex-start;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-end {
-  justify-content: flex-end;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
-/* ========== Gap Utilities ========== */
-.gap-0 {
-  gap: var(--space-0);
-}
-
-.gap-1 {
-  gap: var(--space-1);
-}
-
-.gap-2 {
-  gap: var(--space-2);
-}
-
-.gap-4 {
-  gap: var(--space-4);
-}
-
-.gap-6 {
-  gap: var(--space-6);
-}
-
-.gap-8 {
-  gap: var(--space-8);
-}
-
-.gap-10 {
-  gap: var(--space-10);
-}
-
-.gap-12 {
-  gap: var(--space-12);
-}
-
-.gap-16 {
-  gap: var(--space-16);
-}
-
-.gap-20 {
-  gap: var(--space-20);
-}
-
-.gap-24 {
-  gap: var(--space-24);
-}
-
-.gap-32 {
-  gap: var(--space-32);
-}
-
-/* ========== Margin Utilities ========== */
-.m-0 {
-  margin: 0;
-}
-
-.m-auto {
-  margin: auto;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.mt-0 {
-  margin-top: 0;
-}
-
-.mt-4 {
-  margin-top: var(--space-4);
-}
-
-.mt-8 {
-  margin-top: var(--space-8);
-}
-
-.mt-12 {
-  margin-top: var(--space-12);
-}
-
-.mt-16 {
-  margin-top: var(--space-16);
-}
-
-.mt-20 {
-  margin-top: var(--space-20);
-}
-
-.mt-24 {
-  margin-top: var(--space-24);
-}
-
-.mt-32 {
-  margin-top: var(--space-32);
-}
-
-.mb-0 {
-  margin-bottom: 0;
-}
-
-.mb-4 {
-  margin-bottom: var(--space-4);
-}
-
-.mb-8 {
-  margin-bottom: var(--space-8);
-}
-
-.mb-12 {
-  margin-bottom: var(--space-12);
-}
-
-.mb-16 {
-  margin-bottom: var(--space-16);
-}
-
-.mb-20 {
-  margin-bottom: var(--space-20);
-}
-
-.mb-24 {
-  margin-bottom: var(--space-24);
-}
-
-.mb-32 {
-  margin-bottom: var(--space-32);
-}
-
-.ml-0 {
-  margin-left: 0;
-}
-
-.ml-4 {
-  margin-left: var(--space-4);
-}
-
-.ml-8 {
-  margin-left: var(--space-8);
-}
-
-.ml-12 {
-  margin-left: var(--space-12);
-}
-
-.ml-16 {
-  margin-left: var(--space-16);
-}
-
-.mr-0 {
-  margin-right: 0;
-}
-
-.mr-4 {
-  margin-right: var(--space-4);
-}
-
-.mr-8 {
-  margin-right: var(--space-8);
-}
-
-.mr-12 {
-  margin-right: var(--space-12);
-}
-
-.mr-16 {
-  margin-right: var(--space-16);
-}
-
-.mx-4 {
-  margin-left: var(--space-4);
-  margin-right: var(--space-4);
-}
-
-.mx-8 {
-  margin-left: var(--space-8);
-  margin-right: var(--space-8);
-}
-
-.mx-12 {
-  margin-left: var(--space-12);
-  margin-right: var(--space-12);
-}
-
-.mx-16 {
-  margin-left: var(--space-16);
-  margin-right: var(--space-16);
-}
-
-.my-4 {
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-
-.my-8 {
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-8);
-}
-
-.my-12 {
-  margin-top: var(--space-12);
-  margin-bottom: var(--space-12);
-}
-
-.my-16 {
-  margin-top: var(--space-16);
-  margin-bottom: var(--space-16);
-}
-
-/* ========== Padding Utilities ========== */
-.p-0 {
-  padding: 0;
-}
-
-.pt-0 {
-  padding-top: 0;
-}
-
-.pt-4 {
-  padding-top: var(--space-4);
-}
-
-.pt-8 {
-  padding-top: var(--space-8);
-}
-
-.pt-12 {
-  padding-top: var(--space-12);
-}
-
-.pt-16 {
-  padding-top: var(--space-16);
-}
-
-.pt-20 {
-  padding-top: var(--space-20);
-}
-
-.pt-24 {
-  padding-top: var(--space-24);
-}
-
-.pt-32 {
-  padding-top: var(--space-32);
-}
-
-.pb-0 {
-  padding-bottom: 0;
-}
-
-.pb-4 {
-  padding-bottom: var(--space-4);
-}
-
-.pb-8 {
-  padding-bottom: var(--space-8);
-}
-
-.pb-12 {
-  padding-bottom: var(--space-12);
-}
-
-.pb-16 {
-  padding-bottom: var(--space-16);
-}
-
-.pb-20 {
-  padding-bottom: var(--space-20);
-}
-
-.pb-24 {
-  padding-bottom: var(--space-24);
-}
-
-.pb-32 {
-  padding-bottom: var(--space-32);
-}
-
-.pl-0 {
-  padding-left: 0;
-}
-
-.pl-4 {
-  padding-left: var(--space-4);
-}
-
-.pl-8 {
-  padding-left: var(--space-8);
-}
-
-.pl-12 {
-  padding-left: var(--space-12);
-}
-
-.pl-16 {
-  padding-left: var(--space-16);
-}
-
-.pr-0 {
-  padding-right: 0;
-}
-
-.pr-4 {
-  padding-right: var(--space-4);
-}
-
-.pr-8 {
-  padding-right: var(--space-8);
-}
-
-.pr-12 {
-  padding-right: var(--space-12);
-}
-
-.pr-16 {
-  padding-right: var(--space-16);
-}
-
-.px-4 {
-  padding-left: var(--space-4);
-  padding-right: var(--space-4);
-}
-
-.px-8 {
-  padding-left: var(--space-8);
-  padding-right: var(--space-8);
-}
-
-.px-12 {
-  padding-left: var(--space-12);
-  padding-right: var(--space-12);
-}
-
-.px-16 {
-  padding-left: var(--space-16);
-  padding-right: var(--space-16);
-}
-
-.px-20 {
-  padding-left: var(--space-20);
-  padding-right: var(--space-20);
-}
-
-.px-24 {
-  padding-left: var(--space-24);
-  padding-right: var(--space-24);
-}
-
-.py-4 {
-  padding-top: var(--space-4);
-  padding-bottom: var(--space-4);
-}
-
-.py-8 {
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
-}
-
-.py-12 {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-
-.py-16 {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
-}
-
-.py-20 {
-  padding-top: var(--space-20);
-  padding-bottom: var(--space-20);
-}
-
-.py-24 {
-  padding-top: var(--space-24);
-  padding-bottom: var(--space-24);
-}
-
-/* ========== Display Utilities ========== */
-.block {
-  display: block;
-}
-
-.inline {
-  display: inline;
-}
-
-.inline-block {
-  display: inline-block;
-}
-
-.hidden {
-  display: none;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.visible {
-  visibility: visible;
-}
-
-.grid {
-  display: grid;
-}
-
-.inline-flex {
-  display: inline-flex;
-}
-
-/* ========== Position Utilities ========== */
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.fixed {
+/* ========== حاوي الإشعارات ========== */
+.toast-container {
   position: fixed;
-}
-
-.sticky {
-  position: sticky;
-}
-
-.static {
-  position: static;
-}
-
-/* ========== Text Utilities ========== */
-.text-left {
-  text-align: left;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-justify {
-  text-align: justify;
-}
-
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-.text-lowercase {
-  text-transform: lowercase;
-}
-
-.text-capitalize {
-  text-transform: capitalize;
-}
-
-.font-normal {
-  font-weight: var(--font-weight-normal);
-}
-
-.font-medium {
-  font-weight: var(--font-weight-medium);
-}
-
-.font-semibold {
-  font-weight: var(--font-weight-semibold);
-}
-
-.font-bold {
-  font-weight: var(--font-weight-bold);
-}
-
-.text-xs {
-  font-size: var(--font-size-xs);
-}
-
-.text-sm {
-  font-size: var(--font-size-sm);
-}
-
-.text-base {
-  font-size: var(--font-size-base);
-}
-
-.text-lg {
-  font-size: var(--font-size-lg);
-}
-
-.text-xl {
-  font-size: var(--font-size-xl);
-}
-
-.text-2xl {
-  font-size: var(--font-size-2xl);
-}
-
-.text-3xl {
-  font-size: var(--font-size-3xl);
-}
-
-.text-4xl {
-  font-size: var(--font-size-4xl);
-}
-
-/* ========== Width Utilities ========== */
-.w-full {
+  top: var(--space-20);
+  right: var(--space-20);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  pointer-events: none;
+  max-width: 400px;
   width: 100%;
 }
 
-.w-auto {
-  width: auto;
+/* ========== الإشعار الأساسي ========== */
+.toast {
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  min-width: 280px;
+  max-width: 400px;
+  transform: translateX(100%);
+  transition: transform var(--duration-normal) var(--ease-standard);
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
-.w-fit {
-  width: fit-content;
+.toast.show {
+  transform: translateX(0);
 }
 
-.max-w-xs {
-  max-width: 20rem;
+/* ========== أيقونة الإشعار ========== */
+.toast__icon {
+  width: var(--space-20);
+  height: var(--space-20);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.max-w-sm {
-  max-width: 24rem;
-}
-
-.max-w-md {
-  max-width: 28rem;
-}
-
-.max-w-lg {
-  max-width: 32rem;
-}
-
-.max-w-xl {
-  max-width: 36rem;
-}
-
-.max-w-full {
-  max-width: 100%;
-}
-
-/* ========== Height Utilities ========== */
-.h-full {
+.toast__icon svg {
+  width: 100%;
   height: 100%;
 }
 
-.h-auto {
-  height: auto;
+/* ========== محتوى الإشعار ========== */
+.toast__content {
+  flex: 1;
+  min-width: 0;
 }
 
-.h-screen {
-  height: 100vh;
+.toast__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--line-height-tight);
 }
 
-.min-h-screen {
-  min-height: 100vh;
+.toast__message {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  margin: 0;
+  line-height: var(--line-height-tight);
+  opacity: 0.9;
 }
 
-/* ========== Overflow Utilities ========== */
-.overflow-hidden {
-  overflow: hidden;
-}
-
-.overflow-auto {
-  overflow: auto;
-}
-
-.overflow-scroll {
-  overflow: scroll;
-}
-
-.overflow-x-hidden {
-  overflow-x: hidden;
-}
-
-.overflow-y-hidden {
-  overflow-y: hidden;
-}
-
-.overflow-x-auto {
-  overflow-x: auto;
-}
-
-.overflow-y-auto {
-  overflow-y: auto;
-}
-
-/* ========== Border Radius Utilities ========== */
-.rounded-none {
-  border-radius: 0;
-}
-
-.rounded-sm {
-  border-radius: var(--radius-sm);
-}
-
-.rounded {
-  border-radius: var(--radius-base);
-}
-
-.rounded-md {
-  border-radius: var(--radius-md);
-}
-
-.rounded-lg {
-  border-radius: var(--radius-lg);
-}
-
-.rounded-full {
-  border-radius: var(--radius-full);
-}
-
-/* ========== Shadow Utilities ========== */
-.shadow-none {
-  box-shadow: none;
-}
-
-.shadow-xs {
-  box-shadow: var(--shadow-xs);
-}
-
-.shadow-sm {
-  box-shadow: var(--shadow-sm);
-}
-
-.shadow-md {
-  box-shadow: var(--shadow-md);
-}
-
-.shadow-lg {
-  box-shadow: var(--shadow-lg);
-}
-
-/* ========== Interaction Utilities ========== */
-.pointer-events-none {
-  pointer-events: none;
-}
-
-.pointer-events-auto {
-  pointer-events: auto;
-}
-
-.cursor-pointer {
+/* ========== زر إغلاق الإشعار ========== */
+.toast__close {
+  background: none;
+  border: none;
+  padding: var(--space-2);
   cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+  width: var(--space-20);
+  height: var(--space-20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.cursor-not-allowed {
-  cursor: not-allowed;
-}
-
-.cursor-default {
-  cursor: default;
-}
-
-.select-none {
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.select-text {
-   -webkit-user-select: text;
-   user-select: text;
-}
-
-.select-all {
-  -webkit-user-select: all;
-  user-select: all;
-}
-
-/* ========== Opacity Utilities ========== */
-.opacity-0 {
-  opacity: 0;
-}
-
-.opacity-25 {
-  opacity: 0.25;
-}
-
-.opacity-50 {
-  opacity: 0.5;
-}
-
-.opacity-75 {
-  opacity: 0.75;
-}
-
-.opacity-100 {
+.toast__close:hover {
   opacity: 1;
 }
 
-/* ========== Z-Index Utilities ========== */
-.z-0 {
-  z-index: 0;
+.toast__close:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--space-2);
 }
 
-.z-10 {
-  z-index: 10;
+.toast__close svg {
+  width: var(--space-12);
+  height: var(--space-12);
 }
 
-.z-20 {
-  z-index: 20;
+/* ========== شريط التقدم ========== */
+.toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: var(--space-2);
+  background-color: currentColor;
+  opacity: 0.3;
+  transform-origin: left;
+  transition: transform linear;
 }
 
-.z-30 {
-  z-index: 30;
+/* ========== أنواع الإشعارات ========== */
+.toast--success {
+  background-color: rgba(var(--color-success-rgb), 0.95);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-success);
 }
 
-.z-40 {
-  z-index: 40;
+.toast--error {
+  background-color: rgba(var(--color-error-rgb), 0.95);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-error);
 }
 
-.z-50 {
-  z-index: 50;
+.toast--warning {
+  background-color: rgba(var(--color-warning-rgb), 0.95);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-warning);
 }
 
-/* ========== Mobile Portrait Responsive Utilities (480px) ========== */
+.toast--info {
+  background-color: rgba(var(--color-info-rgb), 0.95);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-info);
+}
+
+.toast--default {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* ========== أحجام الإشعارات ========== */
+.toast--small {
+  padding: var(--space-8) var(--space-12);
+  font-size: var(--font-size-xs);
+  min-width: 200px;
+}
+
+.toast--large {
+  padding: var(--space-16) var(--space-20);
+  font-size: var(--font-size-base);
+  min-width: 350px;
+}
+
+/* ========== إشعارات بأعمال ========== */
+.toast--with-action {
+  padding-right: var(--space-12);
+}
+
+.toast__actions {
+  display: flex;
+  gap: var(--space-8);
+  margin-left: var(--space-8);
+}
+
+.toast__action {
+  background: none;
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  opacity: 0.9;
+}
+
+.toast__action:hover {
+  opacity: 1;
+  background-color: currentColor;
+  color: var(--color-surface);
+}
+
+.toast__action:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--space-1);
+}
+
+.toast__action--primary {
+  background-color: currentColor;
+  color: var(--color-surface);
+  opacity: 1;
+}
+
+.toast__action--primary:hover {
+  opacity: 0.9;
+}
+
+/* ========== إشعارات مع صور ========== */
+.toast--with-avatar .toast__icon {
+  width: var(--space-32);
+  height: var(--space-32);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.toast--with-avatar .toast__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== إشعارات دائمة ========== */
+.toast--persistent {
+  transform: translateX(0) !important;
+}
+
+.toast--persistent .toast__progress {
+  display: none;
+}
+
+/* ========== مواضع مختلفة ========== */
+.toast-container--top-left {
+  top: var(--space-20);
+  left: var(--space-20);
+  right: auto;
+}
+
+.toast-container--top-left .toast {
+  transform: translateX(-100%);
+}
+
+.toast-container--top-left .toast.show {
+  transform: translateX(0);
+}
+
+.toast-container--bottom-right {
+  top: auto;
+  bottom: var(--space-20);
+  right: var(--space-20);
+}
+
+.toast-container--bottom-left {
+  top: auto;
+  bottom: var(--space-20);
+  left: var(--space-20);
+  right: auto;
+}
+
+.toast-container--bottom-left .toast {
+  transform: translateX(-100%);
+}
+
+.toast-container--bottom-left .toast.show {
+  transform: translateX(0);
+}
+
+.toast-container--top-center {
+  top: var(--space-20);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.toast-container--top-center .toast {
+  transform: translateY(-100%);
+}
+
+.toast-container--top-center .toast.show {
+  transform: translateY(0);
+}
+
+.toast-container--bottom-center {
+  top: auto;
+  bottom: var(--space-20);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.toast-container--bottom-center .toast {
+  transform: translateY(100%);
+}
+
+.toast-container--bottom-center .toast.show {
+  transform: translateY(0);
+}
+
+/* ========== أنيميشن دخول وخروج ========== */
+@keyframes toastSlideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastSlideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes toastSlideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastSlideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* ========== أنيميشن حسب المكان ========== */
+.toast--animate-right {
+  animation: toastSlideInRight var(--duration-normal) var(--ease-standard);
+}
+
+.toast--animate-left {
+  animation: toastSlideInLeft var(--duration-normal) var(--ease-standard);
+}
+
+.toast--animate-fade {
+  animation: toastFadeIn var(--duration-normal) var(--ease-standard);
+}
+
+.toast--leaving-right {
+  animation: toastSlideOutRight var(--duration-normal) var(--ease-standard);
+}
+
+.toast--leaving-left {
+  animation: toastSlideOutLeft var(--duration-normal) var(--ease-standard);
+}
+
+.toast--leaving-fade {
+  animation: toastFadeOut var(--duration-normal) var(--ease-standard);
+}
+
+/* ========== تجاوب الإشعارات ========== */
 @media (max-width: 480px) {
-  .mobile\:hidden {
-    display: none;
+  .toast-container,
+  .toast-container--top-left,
+  .toast-container--top-right,
+  .toast-container--bottom-left,
+  .toast-container--bottom-right {
+    top: var(--space-10);
+    right: var(--space-10);
+    left: var(--space-10);
+    width: auto;
+    max-width: none;
   }
   
-  .mobile\:block {
-    display: block;
+  .toast {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+    transform: translateY(-100%);
   }
   
-  .mobile\:flex {
-    display: flex;
+  .toast.show {
+    transform: translateY(0);
   }
   
-  .mobile\:flex-col {
+  .toast--small {
+    padding: var(--space-6) var(--space-10);
+  }
+  
+  .toast__actions {
     flex-direction: column;
-  }
-  
-  .mobile\:text-center {
-    text-align: center;
-  }
-  
-  .mobile\:text-sm {
-    font-size: var(--font-size-sm);
-  }
-  
-  .mobile\:px-4 {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
-  }
-  
-  .mobile\:py-4 {
-    padding-top: var(--space-4);
-    padding-bottom: var(--space-4);
-  }
-  
-  .mobile\:gap-4 {
     gap: var(--space-4);
   }
   
-  .mobile\:w-full {
-    width: 100%;
+  .toast__icon {
+    width: var(--space-16);
+    height: var(--space-16);
+  }
+  
+  .toast--with-avatar .toast__icon {
+    width: var(--space-24);
+    height: var(--space-24);
   }
 }
 
-/* ========== Responsive Utilities ========== */
-@media (max-width: 640px) {
-  .sm\:hidden {
-    display: none;
-  }
-  
-  .sm\:block {
-    display: block;
-  }
-  
-  .sm\:flex {
-    display: flex;
-  }
-  
-  .sm\:flex-col {
-    flex-direction: column;
+/* ========== السمة الداكنة ========== */
+[data-color-scheme="dark"] .toast--default {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .toast--default {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border-color: var(--color-border);
   }
 }
 
-@media (max-width: 768px) {
-  .md\:hidden {
-    display: none;
+/* ========== حالات تفاعلية ========== */
+.toast:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.toast:hover .toast__progress {
+  animation-play-state: paused;
+}
+
+/* ========== تحسينات الأداء ========== */
+.toast {
+  will-change: transform, opacity;
+}
+
+.toast__progress {
+  will-change: transform;
+}
+
+/* ========== إمكانية الوصول ========== */
+.toast[role="alert"] {
+  /* سيتم التعامل معها في JavaScript */
+}
+
+.toast[aria-live="assertive"] {
+  /* للإشعارات المهمة */
+}
+
+.toast[aria-live="polite"] {
+  /* للإشعارات العادية */
+}
+
+/* ========== تحسين الحركة المخفضة ========== */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+    animation: none;
   }
   
-  .md\:block {
-    display: block;
+  .toast--animate-right,
+  .toast--animate-left,
+  .toast--animate-fade,
+  .toast--leaving-right,
+  .toast--leaving-left,
+  .toast--leaving-fade {
+    animation: none;
   }
   
-  .md\:flex {
-    display: flex;
-  }
-  
-  .md\:flex-col {
-    flex-direction: column;
+  .toast.show {
+    transform: none;
   }
 }
 
-@media (min-width: 1024px) {
-  .lg\:flex {
-    display: flex;
+/* ========== حالات خاصة ========== */
+.toast--loading .toast__icon {
+  animation: spin 1s linear infinite;
+}
+
+.toast--loading .toast__progress {
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .lg\:hidden {
-    display: none;
-  }
-  
-  .lg\:block {
-    display: block;
-  }
+}
+
+/* ========== تكديس الإشعارات ========== */
+.toast-stack .toast:nth-child(1) {
+  z-index: 3;
+}
+
+.toast-stack .toast:nth-child(2) {
+  z-index: 2;
+  transform: translateX(var(--space-8)) scale(0.95);
+  opacity: 0.8;
+}
+
+.toast-stack .toast:nth-child(3) {
+  z-index: 1;
+  transform: translateX(var(--space-16)) scale(0.9);
+  opacity: 0.6;
+}
+
+.toast-stack .toast:nth-child(n+4) {
+  display: none;
+}
+
+/* ========== عداد الإشعارات ========== */
+.toast-counter {
+  position: absolute;
+  top: calc(-1 * var(--space-8));
+  right: calc(-1 * var(--space-8));
+  background-color: var(--color-error);
+  color: var(--color-btn-primary-text);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-6);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  min-width: var(--space-20);
+  height: var(--space-20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
