@@ -228,12 +228,18 @@ export class StateManager {
    * @param {Array} books - قائمة الكتب
    */
   setBooksData(books) {
+  try {
+    const list = Array.isArray(books) ? books : [];
     this.set({
-      books: Array.isArray(books) ? books : [],
-      filteredBooks: Array.isArray(books) ? [...books] : []
+      books: list,
+      filteredBooks: [...list],
     });
-    console.log(`📚 [StateManager] تم تحميل ${books.length} كتاب`);
+    console.log(`📚 [StateManager] تم تحميل ${list.length} كتاب`);
+    eventBus?.publish?.('data:books:loaded', { count: list.length });
+  } catch (e) {
+    console.error('❌ [StateManager] فشل setBooksData:', e);
   }
+}
 
   /**
    * الحصول على قائمة الكتب

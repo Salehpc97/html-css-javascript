@@ -61,12 +61,6 @@ class DigitalLibraryApp {
       this.renderBooks(data.results);
     });
 
-    // أحداث التفاعل
-    eventBus.subscribe('ui:book:select', (data) => {
-      // تم نقل منطق فتح الكتب إلى UIManager
-      console.log('📖 [DigitalLibrary] تفويض فتح الكتاب لـ UIManager');
-    });
-
     // أحداث النظام
     eventBus.subscribe('app:started', (data) => {
       console.log('🎉 [DigitalLibrary] التطبيق جاهز:', data.timestamp);
@@ -256,11 +250,6 @@ class DigitalLibraryApp {
     
     // مسح المحتوى الحالي
     booksGrid.innerHTML = '';
-    
-    if (!books || books.length === 0) {
-      this.showEmptyState();
-      return;
-    }
   
     const booksContainer = document.createElement('div');
     booksContainer.className = 'books-container';
@@ -298,39 +287,6 @@ class DigitalLibraryApp {
     
     return card;
   }
-
-  showEmptyState() {
-   const booksGrid = DOM_ELEMENTS.booksGrid;
-    if ((booksGrid)) {
-      booksGrid.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-state__icon">📚</div>
-          <h3 class="empty-state__title">لا توجد كتب متاحة</h3>
-          <p class="empty-state__message">لم يتم العثور على أي كتب في المكتبة.</p>
-          <button onclick="location.reload()" class="retry-btn">
-            إعادة تحديث
-          </button>
-        </div>
-      `;
-    }
-  }
-
-  showErrorMessage(message) {
-   const booksGrid = DOM_ELEMENTS.booksGrid;
-    if (booksGrid) {
-      booksGrid.innerHTML = `
-        <div class="error-state">
-          <div class="error-state__icon">⚠️</div>
-          <h3 class="error-state__title">حدث خطأ في التحميل</h3>
-          <p class="error-state__message">${message}</p>
-          <button onclick="location.reload()" class="retry-btn">
-            إعادة المحاولة
-          </button>
-        </div>
-      `;
-    }
-  }
-
   openBookModal(book) {
     // تنفيذ فتح النافذة المنبثقة للكتاب
     console.log('📖 فتح كتاب:', book.title);
