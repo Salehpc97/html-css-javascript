@@ -472,7 +472,6 @@ export class StateManager {
       searchResults: [],
       selectedBook: null
     });
-    console.log('🧹 [StateManager] تم مسح المخزن المؤقت');
   }
 
   /**
@@ -482,7 +481,6 @@ export class StateManager {
     this.listeners.clear();
     this.history = [];
     this.state = { ...initialState };
-    console.log('🗑️ [StateManager] تم تنظيف الموارد');
   }
 
   /**
@@ -503,7 +501,6 @@ const isDev = true; // manually toggle this
 
 if (typeof window !== 'undefined' && isDev) {
   window.stateManager = stateManager;
-  console.log('🔧 [StateManager] متاح عبر window.stateManager');
 }
 
 // تصدير مرجع مباشر للحالة

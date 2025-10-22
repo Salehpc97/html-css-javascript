@@ -15,8 +15,6 @@ export class BookService {
    * @returns {Array} الكتب المفلترة
    */
   static filterBooks(filters = {}) {
-    console.log('🔍 [BookService] تصفية الكتب...', filters);
-    
     const books = StateManager.getBooks();
     const { 
       searchTerm = '', 
@@ -75,8 +73,6 @@ export class BookService {
    * @returns {Array} نتائج البحث
    */
   static searchBooks(query) {
-    console.log('🔎 [BookService] بحث سريع:', query);
-    
     if (!query || query.trim().length < 2) {
       return StateManager.getBooks();
     }
@@ -207,8 +203,6 @@ export class BookService {
    * @returns {Array} الكتب المميزة
    */
   static getFeaturedBooks(limit = 6) {
-    console.log(`⭐ [BookService] جلب ${limit} كتاب مميز...`);
-    
     const books = StateManager.getBooks();
     
     // ترتيب الكتب حسب التقييم وعدد الصفحات (للتنوع)
@@ -225,7 +219,6 @@ export class BookService {
       })
       .slice(0, limit);
 
-    console.log(`✅ [BookService] تم جلب ${featuredBooks.length} كتاب مميز`);
     return featuredBooks;
   }
 

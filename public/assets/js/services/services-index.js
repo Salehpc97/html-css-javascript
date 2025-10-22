@@ -24,10 +24,7 @@ export class ServiceManager {
       console.warn('⚠️ [ServiceManager] الخدمات مُهيأة بالفعل');
       return;
     }
-
     try {
-      console.log('🔧 [ServiceManager] بدء تهيئة الخدمات...');
-
       // تسجيل الخدمات
       this.services.set('api', ApiService);
       this.services.set('book', BookService);

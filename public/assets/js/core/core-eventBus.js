@@ -5,14 +5,11 @@
 
 import { UI_CONFIG } from './core-config.js';
 
-/**
- * فئة نظام الأحداث المتقدم
- */
+
 export class EventBus {
   constructor(options = {}) {
     // خريطة المستمعين
     this.listeners = new Map();
-    
     // الإعدادات
     this.options = {
       maxListeners: options.maxListeners || UI_CONFIG.maxListeners || 20,
@@ -20,7 +17,6 @@ export class EventBus {
       enableMetrics: options.enableMetrics ?? true,
       warningThreshold: options.warningThreshold || 10
     };
-    
     // إحصائيات الأداء
     this.metrics = {
       totalEvents: 0,
@@ -29,13 +25,9 @@ export class EventBus {
       errorCounts: new Map(),
       startTime: Date.now()
     };
-    
     // معرف فريد للمثيل
     this.id = `eventbus-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    
-    console.log(`🚌 [EventBus] تم إنشاء نظام أحداث جديد: ${this.id}`);
   }
-
   /**
    * الاشتراك في حدث
    * @param {string} event - اسم الحدث

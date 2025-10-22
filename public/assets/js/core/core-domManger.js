@@ -105,10 +105,7 @@ export class DOMManager {
    * تخزين العناصر الأساسية مؤقتاً
    */
   cacheEssentialElements() {
-    if (this.options.debugMode) {
-      console.log('📦 [DOMManager] تخزين العناصر الأساسية...');
-    }
-
+  
     const selectors = DOM_CONFIG.selectors;
     let foundCount = 0;
     let notFoundCount = 0;
@@ -124,10 +121,6 @@ export class DOMManager {
             accessCount: 0
           });
           foundCount++;
-          
-          if (this.options.debugMode) {
-            console.log(`✅ [DOMManager] تم العثور على: ${key} (${selector})`);
-          }
         } else {
           // إنشاء عنصر placeholder
           const placeholder = this.createPlaceholder(key, selector);
@@ -139,11 +132,7 @@ export class DOMManager {
             isPlaceholder: true
           });
           notFoundCount++;
-          
-          if (this.options.debugMode) {
-            console.warn(`⚠️ [DOMManager] لم يتم العثور على: ${key} (${selector})`);
-          }
-          
+    
           // إعادة المحاولة إذا كانت مفعلة
           if (this.options.autoRetry) {
             this.scheduleRetry(key, selector);
@@ -158,9 +147,6 @@ export class DOMManager {
     this.stats.elementsFound += foundCount;
     this.stats.elementsNotFound += notFoundCount;
 
-    if (this.options.debugMode) {
-      console.log(`📊 [DOMManager] تم تخزين ${foundCount} عنصر، ${notFoundCount} غير موجود`);
-    }
   }
 
   /**
@@ -269,10 +255,6 @@ export class DOMManager {
       childList: true,
       subtree: true
     });
-
-    if (this.options.debugMode) {
-      console.log('👁️ [DOMManager] تم تفعيل مراقب تغييرات DOM');
-    }
   }
 
   /**
@@ -650,7 +632,6 @@ const isDev = true; // manually toggle this
 
 if (typeof window !== 'undefined' && isDev) {
   window.domManager = domManager;
-  console.log('🔧 [DOMManager] متاح عبر window.domManager');
 }
 
 // تصدير DOMManager كافتراضي

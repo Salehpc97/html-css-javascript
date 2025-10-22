@@ -95,7 +95,6 @@ export class SearchManager {
   async validateDataSources() {
     try {
       const books = stateManager.getBooks();
-      console.log(`📚 [search-manager] تم تحميل ${books.length} كتاب`);
       if (!Array.isArray(books)) {
         throw new Error('بيانات الكتب غير متوفرة أو غير صالحة');
       }
@@ -314,9 +313,6 @@ export class SearchManager {
           searchableText.includes(term)
         );
       });
-      
-      console.log(`🔍 [SearchManager] تم العثور على ${results.length} نتيجة من أصل ${allBooks.length}`);
-      
       return this.applyFilters(results);
       
     } catch (error) {

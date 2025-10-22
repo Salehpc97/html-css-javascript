@@ -81,14 +81,11 @@ export class ApiService {
 
  async testConnection() {
     try {
-      console.log('🔌 [ApiService] اختبار اتصال API...');
       // اختبار بسيط - جلب حالة الخادم
       const healthCheck = await this.request('/books', {
         method: 'GET',
         timeout: 5000 // وقت أقصر للاختبار
       });
-      
-      console.log('✅ [ApiService] اتصال API نشط');
       return {
         success: true,
         status: 'connected',

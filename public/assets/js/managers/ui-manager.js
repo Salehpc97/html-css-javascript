@@ -57,17 +57,12 @@ export class UIManager {
    * إعداد مستمعي الأحداث
    */
   setupEventListeners() {
-    // أحداث النظام
-    eventBus.subscribe('dom:ready', () => {
-      console.log('🏗️ [UIManager] DOM جاهز - تهيئة التفاعلات');
-    });
-
-    // أحداث التفاعل
+  
     eventBus.subscribe('ui:sidebar:toggle', () => this.handleSidebarToggle());
     eventBus.subscribe('ui:sidebar:open', () => this.handleSidebarOpen());
     eventBus.subscribe('ui:sidebar:close', () => this.handleSidebarClose());
-    eventBus.subscribe('ui:sidebar:opened', () => this.handleSidebarOpened());
-    eventBus.subscribe('ui:sidebar:closed', () => this.handleSidebarClosed());
+    eventBus.subscribe('ui:sidebar:opened', () => this.handleSidebarOpen());
+    eventBus.subscribe('ui:sidebar:closed', () => this.handleSidebarClose());
     eventBus.subscribe('ui:navigation:change', (data) => this.handleNavigationChange(data));
     
     eventBus.subscribe('ui:search:perform', (data) => this.handleSearch(data));
@@ -86,8 +81,7 @@ export class UIManager {
     // أحداث البيانات
     eventBus.subscribe('books:loaded', (data) => this.handleBooksLoaded(data));
     eventBus.subscribe('books:filtered', (data) => this.handleBooksFiltered(data));
-    
-    console.log('🎧 [UIManager] تم تسجيل مستمعي الأحداث');
+  
   }
 
   /**
@@ -107,20 +101,14 @@ export class UIManager {
    * تهيئة جميع التفاعلات
    */
   initializeAllInteractions() {
-    console.log('🎮 [UIManager] تهيئة العناصر التفاعلية...');
-    
+
     this.setupHeaderInteractions();
     this.setupSidebarInteractions();
     this.setupSearchInteractions();
     this.setupModalInteractions();
     this.setupGeneralInteractions();
-    
-    console.log('✅ [UIManager] تم تهيئة جميع التفاعلات');
-  }
 
-  // =======================
-  // تهيئة التفاعلات المحددة
-  // =======================
+  }
 
   /**
    * تهيئة تفاعلات الترويسة
@@ -162,8 +150,6 @@ export class UIManager {
         eventBus.publish('ui:auth:register:request');
       });
     }
-
-    console.log('🔗 [UIManager] تم تهيئة تفاعلات Header');
   }
 
   /**
@@ -198,7 +184,6 @@ export class UIManager {
         eventBus.publish('ui:settings:open');
       });
     }
-
     // زر اللغة
     const languageToggle = DOM_ELEMENTS.languageToggle;
     if (languageToggle) {
@@ -206,8 +191,6 @@ export class UIManager {
         eventBus.publish('ui:language:toggle');
       });
     }
-
-    console.log('📋 [UIManager] تم تهيئة تفاعلات Sidebar');
   }
 
   /**
@@ -244,12 +227,10 @@ export class UIManager {
 
     if (searchButton) {
       searchButton.addEventListener('click', () => {
-        const query = searchInput ? searchInput.value.trim() : '';
+        const query = searchInput ? searchInput.valueOf.trim() : '';
         eventBus.publish('ui:search:perform', { query, submit: true });
       });
     }
-
-    console.log('🔍 [UIManager] تم تهيئة تفاعلات البحث');
   }
 
   /**
@@ -272,15 +253,12 @@ export class UIManager {
         }
       });
     }
-
     // مفتاح Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.activeStates.modalOpen) {
         eventBus.publish('ui:modal:close');
       }
     });
-
-    console.log('🪟 [UIManager] تم تهيئة تفاعلات Modal');
   }
 
   /**
@@ -306,13 +284,7 @@ export class UIManager {
         height: window.innerHeight
       });
     });
-
-    console.log('🌐 [UIManager] تم تهيئة التفاعلات العامة');
   }
-
-  // =======================
-  // معالجات الأحداث
-  // =======================
 
   /**
    * معالج تبديل الشريط الجانبي
@@ -350,13 +322,6 @@ export class UIManager {
       eventBus.publish('ui:sidebar:closed');
     }
   }
-
-  handleSidebarOpened() {
-    console.log('✅ [UIManager] Sidebar مفتوح بالكامل');
-  }
-  handleSidebarClosed() {
-    console.log('✅ [UIManager] Sidebar مغلق بالكامل');
-  }
   /**
    * معالج تغيير التنقل
    */
@@ -387,7 +352,7 @@ export class UIManager {
     
     // تحديث URL
     history.pushState(null, '', `#${section}`);
-    
+  
     console.log(`🧭 [UIManager] تم التنقل إلى: ${section}`);
     eventBus.publish('ui:navigation:changed', { section, previous: this.activeStates.currentSection });
   }
@@ -421,14 +386,11 @@ export class UIManager {
     if (searchInput) {
       searchInput.value = '';
     }
-    
     this.activeStates.searchQuery = '';
     stateManager.setSearchTerm('');
     
     eventBus.publish('search:query:cleared');
-    console.log('🗑️ [UIManager] تم مسح البحث');
   }
-
   /**
    * معالج اختيار التصنيف
    */
@@ -443,8 +405,6 @@ export class UIManager {
     // تحديث الحالة
     this.activeStates.currentCategory = category;
     stateManager.setCurrentCategory(category);
-    
-    console.log(`🏷️ [UIManager] تم اختيار تصنيف: ${category}`);
     eventBus.publish('category:selected', { category });
   }
 
@@ -471,8 +431,6 @@ export class UIManager {
     
     // تحديث أيقونة السمة
     this.updateThemeIcon(theme);
-    
-    console.log(`🎨 [UIManager] تم تعيين السمة: ${theme}`);
     eventBus.publish('theme:changed', { theme, previous: this.activeStates.theme });
   }
 
@@ -517,8 +475,6 @@ export class UIManager {
       
       // إعادة التمرير
       document.body.style.overflow = '';
-      
-      console.log('❌ [UIManager] تم إغلاق Modal');
       eventBus.publish('ui:modal:closed');
     }
   }
@@ -528,9 +484,6 @@ export class UIManager {
    */
   handleBookSelect(data) {
     const { book } = data;
-    
-    console.log('📖 [UIManager] تم اختيار كتاب:', book.title);
-    
     // تحديث الحالة
     stateManager.setSelectedBook(book);
     
@@ -545,9 +498,7 @@ export class UIManager {
    * معالج تحميل الكتب
    */
   handleBooksLoaded(data) {
-    const { books } = data;
-    console.log(`📚 [UIManager] تم تحميل ${books.length} كتاب - تحديث العدادات`);
-    
+    const { books } = data;    
     // تحديث عدادات التصنيفات
     this.updateCategoryCounts(books);
   }
@@ -557,12 +508,7 @@ export class UIManager {
    */
   handleBooksFiltered(data) {
     const { books, filter } = data;
-    console.log(`🔍 [UIManager] تمت تصفية ${books.length} كتاب بواسطة: ${filter}`);
   }
-
-  // =======================
-  // دوال مساعدة
-  // =======================
 
   /**
    * تحديث محتوى Modal للكتاب
@@ -587,7 +533,6 @@ export class UIManager {
     if (elements.pages) elements.pages.textContent = `Pages: ${book.pages || 'غير محدد'}`;
     if (elements.description) elements.description.textContent = book.description || 'لا يوجد وصف متاح.';
   }
-
   /**
    * تحديث أيقونة السمة
    */
@@ -621,7 +566,6 @@ export class UIManager {
       themeText.textContent = 'Light Mode';
     }
   }
-
   /**
    * تحديث عدادات التصنيفات
    */
@@ -633,7 +577,6 @@ export class UIManager {
       const category = book.category || 'other';
       categoryCounts[category] = (categoryCounts[category] || 0) + 1;
     });
-    
     // تحديث DOM
     const categoryItems = document.querySelectorAll('.category-item');
     categoryItems.forEach(item => {
@@ -649,7 +592,6 @@ export class UIManager {
       }
     });
   }
-
   /**
    * تحميل الحالة المحفوظة
    */
@@ -666,10 +608,7 @@ export class UIManager {
       this.activeStates.currentSection = hash;
       eventBus.publish('ui:navigation:change', { section: hash });
     }
-    
-    console.log('💾 [UIManager] تم تحميل الحالة المحفوظة');
   }
-
   /**
    * الحصول على حالة المدير
    */
@@ -681,7 +620,6 @@ export class UIManager {
       interactionElements: Array.from(this.interactionElements.keys())
     };
   }
-
   /**
    * تدمير المدير
    */
@@ -690,24 +628,18 @@ export class UIManager {
     this.interactionElements.forEach((element, key) => {
       if (element && element.removeEventListener) {
         // هذا يتطلب حفظ مراجع للدوال، لكن للبساطة سنتركه
-        console.log(`🧹 [UIManager] تنظيف: ${key}`);
       }
     });
-    
     this.interactionElements.clear();
     this.isInitialized = false;
-    
-    console.log(`🗑️ [UIManager] تم تدمير مدير التفاعلات: ${this.id}`);
   }
 }
-
 // إنشاء وتصدير المثيل الوحيد
 export const uiManager = new UIManager();
 
 // إتاحة للتصحيح
 if (typeof window !== 'undefined') {
   window.uiManager = uiManager;
-  console.log('🔧 [UIManager] متاح عبر window.uiManager');
 }
 
 export default UIManager;

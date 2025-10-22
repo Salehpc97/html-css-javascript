@@ -27,8 +27,6 @@ export class CoreSystem {
     
     // معرف فريد للنظام
     this.id = `core-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    
-    console.log(`🌟 [CoreSystem] تم إنشاء نظام النواة: ${this.id}`);
   }
 
   /**
@@ -36,30 +34,21 @@ export class CoreSystem {
    */
   async initialize() {
     if (this.isInitialized) {
-      console.warn('⚠️ [CoreSystem] النواة مُهيأة بالفعل');
       return this.getSystemStatus();
     }
 
     try {
-      console.log('🚀 [CoreSystem] بدء تهيئة النواة الأساسية...');
-      
       // تهيئة نظام الأحداث
       await this.initializeEventBus();
-      
       // تهيئة مدير الحالة
       await this.initializeStateManager();
-      
-      // تهيئة مدير DOM
+      //تهيئة مدير DOM
       await this.initializeDOMManager();
-      
       // الإعداد النهائي
       await this.performFinalSetup();
       
       this.isInitialized = true;
       const initTime = Date.now() - this.startTime;
-      
-      console.log(`✅ [CoreSystem] تمت تهيئة النواة بنجاح في ${initTime}ms`);
-      
       // نشر حدث اكتمال التهيئة
       eventBus.publish('core:initialized', {
         systemId: this.id,
@@ -67,38 +56,30 @@ export class CoreSystem {
         components: Array.from(this.components.keys()),
         timestamp: new Date().toISOString()
       });
-      
       return this.getSystemStatus();
       
     } catch (error) {
       console.error('❌ [CoreSystem] فشل في تهيئة النواة:', error);
-      
       // نشر حدث الفشل
       eventBus.publish('core:initialization_failed', {
         error: error.message,
         step: this.initializationSteps[this.currentStep],
         timestamp: new Date().toISOString()
       });
-      
       throw error;
     }
   }
-
   /**
    * تهيئة نظام الأحداث
    */
   async initializeEventBus() {
-    console.log('🚌 [CoreSystem] تهيئة نظام الأحداث...');
     
     try {
       // نظام الأحداث جاهز بالفعل (تم إنشاؤه في الاستيراد)
       this.components.set('eventBus', eventBus);
-      
       // إعداد معالجات أحداث النظام الأساسية
       this.setupCoreEventHandlers();
-      
       this.currentStep++;
-      console.log('✅ [CoreSystem] تم تهيئة نظام الأحداث');
       
     } catch (error) {
       console.error('❌ [CoreSystem] فشل في تهيئة نظام الأحداث:', error);
@@ -110,48 +91,36 @@ export class CoreSystem {
    * تهيئة مدير الحالة
    */
   async initializeStateManager() {
-    console.log('📊 [CoreSystem] تهيئة مدير الحالة...');
-    
     try {
       // مدير الحالة جاهز بالفعل (تم إنشاؤه في الاستيراد)
       this.components.set('stateManager', stateManager);
-      
       // تحميل الإعدادات المحفوظة
       this.loadSavedSettings();
-      
       this.currentStep++;
-      console.log('✅ [CoreSystem] تم تهيئة مدير الحالة');
-      
+     
     } catch (error) {
       console.error('❌ [CoreSystem] فشل في تهيئة مدير الحالة:', error);
       throw error;
     }
   }
-
   /**
    * تهيئة مدير DOM
    */
   async initializeDOMManager() {
-    console.log('🏗️ [CoreSystem] تهيئة مدير DOM...');
-    
+  
     try {
       this.components.set('domManager', domManager);
-      
       // تهيئة مدير DOM
       domManager.init();
-      
       // انتظار جاهزية DOM
       await this.waitForDOMReady();
-      
       this.currentStep++;
-      console.log('✅ [CoreSystem] تم تهيئة مدير DOM');
       
     } catch (error) {
       console.error('❌ [CoreSystem] فشل في تهيئة مدير DOM:', error);
       throw error;
     }
   }
-
   /**
    * انتظار جاهزية DOM
    */
@@ -169,55 +138,33 @@ export class CoreSystem {
    * الإعداد النهائي
    */
   async performFinalSetup() {
-    console.log('🔧 [CoreSystem] الإعداد النهائي...');
     
     try {
       // إعداد معالجات الأخطاء العامة
       this.setupGlobalErrorHandlers();
-      
       // إعداد مراقبة الأداء
       this.setupPerformanceMonitoring();
-      
       // إعداد التصحيح (في بيئة التطوير)
       if (CONFIG.dev.logging.enableConsole) {
         this.setupDevelopmentTools();
       }
-      
       this.currentStep++;
-      console.log('✅ [CoreSystem] تم الإعداد النهائي');
-      
+  
     } catch (error) {
       console.error('❌ [CoreSystem] فشل في الإعداد النهائي:', error);
       throw error;
     }
   }
-
   /**
    * إعداد معالجات أحداث النظام الأساسية
    */
   setupCoreEventHandlers() {
-    // معالج تغيير الحالة
-    eventBus.subscribe('state:changed', (data) => {
-      console.log('📊 [CoreSystem] تغيير في الحالة:', data.changedKeys);
-    });
-    
-    // معالج أخطاء نظام الأحداث
-    eventBus.subscribe('eventbus:error', (data) => {
-      console.error('🚌 [CoreSystem] خطأ في نظام الأحداث:', data);
-    });
-    
-    // معالج جاهزية DOM
-    eventBus.subscribe('dom:ready', (data) => {
-      console.log('🏗️ [CoreSystem] DOM جاهز:', data);
-    });
-    
     // معالج أخطاء غير متوقعة
     eventBus.subscribe('app:unhandled_error', (data) => {
       console.error('🚨 [CoreSystem] خطأ غير متوقع:', data);
       this.handleUnexpectedError(data);
     });
   }
-
   /**
    * تحميل الإعدادات المحفوظة
    */
@@ -227,26 +174,21 @@ export class CoreSystem {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme && THEME_CONFIG.supportedThemes.includes(savedTheme)) {
         stateManager.setTheme(savedTheme);
-        console.log(`🎨 [CoreSystem] تم تحميل السمة المحفوظة: ${savedTheme}`);
       }
-      
       // تحميل إعدادات أخرى من localStorage إذا وجدت
       const savedSettings = localStorage.getItem('digitalLibrarySettings');
       if (savedSettings) {
         try {
           const settings = JSON.parse(savedSettings);
           // تطبيق الإعدادات المحفوظة
-          console.log('⚙️ [CoreSystem] تم تحميل الإعدادات المحفوظة');
         } catch (parseError) {
           console.warn('⚠️ [CoreSystem] فشل في تحليل الإعدادات المحفوظة:', parseError);
         }
       }
-      
     } catch (error) {
       console.warn('⚠️ [CoreSystem] فشل في تحميل الإعدادات:', error);
     }
   }
-
   /**
    * إعداد معالجات الأخطاء العامة
    */
@@ -259,7 +201,6 @@ export class CoreSystem {
         error: event.reason,
         timestamp: Date.now()
       });
-      
       // منع ظهور الخطأ في console (اختياري)
       // event.preventDefault();
     });
@@ -276,10 +217,7 @@ export class CoreSystem {
         timestamp: Date.now()
       });
     });
-
-    console.log('🛡️ [CoreSystem] تم إعداد معالجات الأخطاء العامة');
   }
-
   /**
    * إعداد مراقبة الأداء
    */
@@ -287,7 +225,6 @@ export class CoreSystem {
     if (!CONFIG.performance.lazyLoading.enabled) {
       return;
     }
-
     // مراقبة استخدام الذاكرة
     if (typeof PerformanceObserver !== 'undefined') {
       try {
@@ -299,16 +236,12 @@ export class CoreSystem {
             }
           });
         });
-        
         observer.observe({ entryTypes: ['navigation', 'resource'] });
-        console.log('📈 [CoreSystem] تم تفعيل مراقبة الأداء');
-        
       } catch (error) {
         console.warn('⚠️ [CoreSystem] فشل في إعداد مراقبة الأداء:', error);
       }
     }
   }
-
   /**
    * إعداد أدوات التطوير
    */
@@ -323,10 +256,7 @@ export class CoreSystem {
         config: CONFIG,
         stats: () => this.getSystemStats()
       };
-      
-      console.log('🔧 [CoreSystem] أدوات التطوير متاحة عبر window.digitalLibraryCore');
     }
-    
     // أوامر console مفيدة
     console.log('💡 أوامر مفيدة للتصحيح:');
     console.log('   • window.digitalLibraryCore.stats() - إحصائيات النظام');
@@ -334,18 +264,13 @@ export class CoreSystem {
     console.log('   • window.digitalLibraryCore.stateManager.getStats() - إحصائيات الحالة');
     console.log('   • window.digitalLibraryCore.domManager.getStats() - إحصائيات DOM');
   }
-
   /**
    * معالج الأخطاء غير المتوقعة
    */
   handleUnexpectedError(errorData) {
     // تسجيل الخطأ في مدير الحالة
     stateManager.setError(true, `خطأ غير متوقع: ${errorData.error?.message || 'خطأ غير معروف'}`);
-    
-    // إمكانية إرسال الخطأ لخدمة تسجيل الأخطاء
-    // this.sendErrorToLoggingService(errorData);
   }
-
   /**
    * الحصول على حالة النظام
    */
@@ -364,7 +289,6 @@ export class CoreSystem {
       timestamp: new Date().toISOString()
     };
   }
-
   /**
    * الحصول على إحصائيات النظام
    */
@@ -384,62 +308,7 @@ export class CoreSystem {
       }
     };
   }
-
-  /**
-   * إعادة تشغيل النظام
-   */
-  async restart() {
-    console.log('🔄 [CoreSystem] إعادة تشغيل النظام...');
-    
-    try {
-      // تدمير النظام الحالي
-      this.destroy();
-      
-      // إعادة تهيئة
-      await this.initialize();
-      
-      console.log('✅ [CoreSystem] تم إعادة تشغيل النظام بنجاح');
-      
-    } catch (error) {
-      console.error('❌ [CoreSystem] فشل في إعادة التشغيل:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * تدمير النظام وتنظيف الموارد
-   */
-  destroy() {
-    console.log('🧹 [CoreSystem] بدء تدمير النظام...');
-    
-    try {
-      // تدمير المكونات
-      this.components.forEach((component, name) => {
-        if (component && typeof component.destroy === 'function') {
-          component.destroy();
-          console.log(`🗑️ [CoreSystem] تم تدمير: ${name}`);
-        }
-      });
-      
-      // مسح المتغيرات
-      this.components.clear();
-      this.isInitialized = false;
-      this.currentStep = 0;
-      
-      // مسح المتغيرات من window
-      if (typeof window !== 'undefined') {
-        delete window.coreSystem;
-        delete window.digitalLibraryCore;
-      }
-      
-      console.log('✅ [CoreSystem] تم تدمير النظام بنجاح');
-      
-    } catch (error) {
-      console.error('❌ [CoreSystem] خطأ في تدمير النظام:', error);
-    }
-  }
 }
-
 /**
  * دالة تهيئة النواة الأساسية
  * @returns {Promise<CoreSystem>} النظام المُهيأ
